@@ -44,13 +44,13 @@ class Player:
             dict_values = tbody[index].find_all(string=not_null)
             data = dict(zip(dict_keys, dict_values))
             # print(data)
-            query = "SELECT * FROM players WHERE card_id = %(card_id)s"
+            query = "SELECT * FROM players WHERE card_id = %(card_id)s;"
             results = connectToMySQL(db).query_db(query, data)
             if len(results) > 0:
                 card_id = {
                 'card_id': results[0]['card_id']
                 }
-                query = "SELECT * FROM players WHERE card_id = %(card_id)s"
+                query = "SELECT * FROM players WHERE card_id = %(card_id)s;"
                 results = connectToMySQL(db).query_db(query, card_id)
                 new_data = {}
                 new_data['G'] = (int(results[0]['G']) + int(data['G']))
@@ -74,11 +74,11 @@ class Player:
                     new_data['position'] = results[0]['position'] + ', ' + data['position']
                 else:
                     new_data['position'] = results[0]['position']
-                update_query = "UPDATE players SET position = %(position)s, G = %(G)s, PA = %(PA)s, AB = %(AB)s, H = %(H)s, HR = %(HR)s, RBI = %(RBI)s, R = %(R)s, BB = %(BB)s, IBB = %(IBB)s, HBP = %(HBP)s, SF = %(SF)s, SO = %(SO)s, GIDP = %(GIDP)s, TB = %(TB)s, SB = %(SB)s, CS = %(CS)s WHERE card_id = %(card_id)s"
+                update_query = "UPDATE players SET position = %(position)s, G = %(G)s, PA = %(PA)s, AB = %(AB)s, H = %(H)s, HR = %(HR)s, RBI = %(RBI)s, R = %(R)s, BB = %(BB)s, IBB = %(IBB)s, HBP = %(HBP)s, SF = %(SF)s, SO = %(SO)s, GIDP = %(GIDP)s, TB = %(TB)s, SB = %(SB)s, CS = %(CS)s WHERE card_id = %(card_id)s;"
                 connectToMySQL(db).query_db(update_query, new_data)
                 index += 1
             else:
-                query = "INSERT INTO players (first_name, last_name, position, rating, card_id, G, PA, AB, H, HR, RBI, R, BB, IBB, HBP, SF, SO, GIDP, TB, SB, CS) VALUES (%(first_name)s, %(last_name)s, %(position)s, %(rating)s, %(card_id)s, %(G)s, %(PA)s, %(AB)s, %(H)s, %(HR)s, %(RBI)s, %(R)s, %(BB)s, %(IBB)s, %(HBP)s, %(SF)s, %(SO)s, %(GIDP)s, %(TB)s, %(SB)s, %(CS)s)"
+                query = "INSERT INTO players (first_name, last_name, position, rating, card_id, G, PA, AB, H, HR, RBI, R, BB, IBB, HBP, SF, SO, GIDP, TB, SB, CS) VALUES (%(first_name)s, %(last_name)s, %(position)s, %(rating)s, %(card_id)s, %(G)s, %(PA)s, %(AB)s, %(H)s, %(HR)s, %(RBI)s, %(R)s, %(BB)s, %(IBB)s, %(HBP)s, %(SF)s, %(SO)s, %(GIDP)s, %(TB)s, %(SB)s, %(CS)s);"
                 connectToMySQL(db).query_db(query, data)
                 index += 1
     @classmethod
