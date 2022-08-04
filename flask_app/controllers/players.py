@@ -15,3 +15,7 @@ def process_file():
     doc = BeautifulSoup(file, 'html.parser')
     player.Player.import_players(doc)
     return redirect('/stats')
+
+@app.route('/stats')
+def stat_page():
+    return render_template('stats.html', all_players = player.Player.get_all_players())
