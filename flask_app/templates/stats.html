@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Stat Page</h1>
+    <table class="sortable">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Position</th>
+            <th>Rating</th>
+            <th>G</th>
+            <th>PA</th>
+            <th>AB</th>
+            <th>H</th>
+            <th>HR</th>
+            <th>RBI</th>
+            <th>R</th>
+            <th>BB</th>
+            <th>IBB</th>
+            <th>HBP</th>
+            <th>SF</th>
+            <th>SO</th>
+            <th>GIDP</th>
+            <th>TB</th>
+            <th>SB</th>
+            <th>CS</th>
+        </tr>
+        {% for player in all_players %} 
+            <tr>
+                <td>{{player.first_name}}</td>
+                <td>{{player.last_name}}</td>
+                <td>{{player.position}}</td>
+                <td>{{player.rating}}</td>
+                <td>{{player.G}}</td>
+                <td>{{player.PA}}</td>
+                <td>{{player.AB}}</td>
+                <td>{{player.H}}</td>
+                <td>{{player.HR}}</td>
+                <td>{{player.RBI}}</td>
+                <td>{{player.R}}</td>
+                <td>{{player.BB}}</td>
+                <td>{{player.IBB}}</td>
+                <td>{{player.HBP}}</td>
+                <td>{{player.SF}}</td>
+                <td>{{player.SO}}</td>
+                <td>{{player.GIDP}}</td>
+                <td>{{player.TB}}</td>
+                <td>{{player.SB}}</td>
+                <td>{{player.CS}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
