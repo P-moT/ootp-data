@@ -1,4 +1,5 @@
 import pymysql.cursors
+from flask_app import app
 class MySQLConnection:
     def __init__(self, db):
         connection = pymysql.connect(host = 'localhost',
@@ -32,6 +33,7 @@ class MySQLConnection:
             except Exception as e:
                 # in case the query fails
                 print("Something went wrong", e)
+                app.logger.error(e)
                 return False
             finally:
                 # close the connection

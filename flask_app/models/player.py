@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from flask_app.config.mysqlconnetcion import connectToMySQL
+from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session
 db = 'ootp_players'
 
