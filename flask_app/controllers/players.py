@@ -1,12 +1,16 @@
 from bs4 import BeautifulSoup
-from flask_app.models import player
+from flask_app.models import player, user
 from flask import render_template, request, redirect, session, flash
 from flask_app import app
 
 
+
 @app.route('/')
 def home():
-    return render_template('home.html')
+    if 'id' in session:
+        return render_template('home.html')
+    else:
+        return render_template('login.html')
 
 @app.route('/process', methods=['POST'])
 def process_file():
