@@ -54,7 +54,14 @@ def login():
 
 @app.route('/user/<int:id>')
 def profile(id):
-    data = {
-        'id': id
-    }
-    return render_template('profile.html', this_user = user.User.get_by_id(data))
+    if 'id' in session:
+        data = {
+            'id': id
+        }
+        data2 = {
+            'id': session['id']
+        }
+        return render_template('profile.html', this_user = user.User.get_by_id(data))
+    else:
+        flash('You must be logged in to view that page.', 'login')
+        return redirect('/')

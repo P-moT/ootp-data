@@ -8,7 +8,10 @@ from flask_app import app
 @app.route('/')
 def home():
     if 'id' in session:
-        return render_template('home.html')
+        data = {
+            'id' : session['id']
+        }
+        return render_template('home.html', current_user=user.User.get_by_id(data))
     else:
         return render_template('login.html')
 
@@ -22,4 +25,11 @@ def process_file():
 
 @app.route('/stats')
 def stat_page():
-    return render_template('stats.html', all_players = player.Player.get_all_players())
+    if 'id' in session:
+        data = {
+            'id': session['id']
+        }
+        return render_template('stats.html', all_players = player.Player.get_all_players(), current_user = user.User.get_by_id(data))
+    else:
+        flash('You must be logged in to view that page.', 'login')
+        return redirect('/')
