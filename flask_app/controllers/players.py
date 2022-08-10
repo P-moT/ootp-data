@@ -29,7 +29,7 @@ def stat_page():
         data = {
             'id': session['id']
         }
-        return render_template('stats.html', all_players = player.Player.get_all_players(), current_user = user.User.get_by_id(data))
+        return render_template('stats.html', all_players = player.Player.get_all_players())
     else:
         flash('You must be logged in to view that page.', 'login')
         return redirect('/')

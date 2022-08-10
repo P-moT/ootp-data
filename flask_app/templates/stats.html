@@ -9,7 +9,7 @@
 <body>
     <h1>Stat Page</h1>
     <button><a href="/">Home</a></button>
-    <button><a href="/user/{{current_user.id}}">My Profile</a></button>
+    <button><a href="/user/{{session['id']}}">My Profile</a></button>
     <button><a href="/logout">Logout</a></button>
     <table class="sortable">
         <tr>
@@ -33,6 +33,7 @@
             <th>TB</th>
             <th>SB</th>
             <th>CS</th>
+            <th>Add to Watchlist</th>
         </tr>
         {% for player in all_players %} 
             <tr>
@@ -56,6 +57,7 @@
                 <td>{{player.TB}}</td>
                 <td>{{player.SB}}</td>
                 <td>{{player.CS}}</td>
+                <td><a href="/add_to_list/{{player.id}}/{{session['id']}}">Watchlist {{player.last_name}}</a></td>
             </tr>
         {% endfor %}
     </table>

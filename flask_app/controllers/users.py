@@ -58,10 +58,25 @@ def profile(id):
         data = {
             'id': id
         }
-        data2 = {
-            'id': session['id']
-        }
-        return render_template('profile.html', this_user = user.User.get_by_id(data))
+        return render_template('profile.html', this_user = user.User.get_by_id(data), watchlist_players=user.User.get_user_watchlist(data))
     else:
         flash('You must be logged in to view that page.', 'login')
         return redirect('/')
+
+@app.route('/add_to_list/<int:pid>/<int:uid>')
+def add_to_list(pid, uid):
+    data = {
+        'pid': pid,
+        'uid': uid
+    }
+    user.User.add_to_list(data)
+    return redirect('/stats')
+
+@app.route('/delete/<int:pid>/<int:uid>')
+def delete(pid, uid):
+    data = {
+        'pid': pid,
+        'uid': uid
+    }
+    user.User.delete_from_list(data)
+    return redirect(f'/user/{uid}')

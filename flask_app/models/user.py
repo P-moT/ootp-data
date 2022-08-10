@@ -1,3 +1,4 @@
+from sqlite3 import connect
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session
 from flask_app import app
@@ -66,3 +67,20 @@ class User:
             return False
         else:
             return cls(results[0])
+
+    @classmethod
+    def get_user_watchlist(cls, data):
+        query = 'SELECT * FROM watchlists JOIN players ON players.id = watchlists.players_id WHERE watchlists.users_id = %(id)s;'
+        results = connectToMySQL(db).query_db(query, data)
+        print(results)
+        return results
+
+    @classmethod
+    def add_to_list(cls, data):
+        query = 'INSERT INTO watchlists (players_id, users_id) VALUES (%(pid)s, %(uid)s);'
+        return connectToMySQL(db).query_db(query, data)
+
+    @classmethod
+    def delete_from_list(cls, data):
+        query = 'DELETE FROM watchlists WHERE players_id = %(pid)s AND users_id = %(uid)s;'
+        return connectToMySQL(db).query_db(query, data)

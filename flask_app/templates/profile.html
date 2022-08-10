@@ -11,5 +11,58 @@
     <button><a href="/">Home</a></button>
     <button><a href="/stats">Stats</a></button>
     <button><a href="/logout">Logout</a></button>
+    <div class="table">
+        <h2>Your Watchlist</h2>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Position</th>
+                <th>Rating</th>
+                <th>G</th>
+                <th>PA</th>
+                <th>AB</th>
+                <th>H</th>
+                <th>HR</th>
+                <th>RBI</th>
+                <th>R</th>
+                <th>BB</th>
+                <th>IBB</th>
+                <th>HBP</th>
+                <th>SF</th>
+                <th>SO</th>
+                <th>GIDP</th>
+                <th>TB</th>
+                <th>SB</th>
+                <th>CS</th>
+                <th>Delete</th>
+            </tr>
+            {% for player in watchlist_players %} 
+            <tr>
+                <td>{{player.first_name}}</td>
+                <td>{{player.last_name}}</td>
+                <td>{{player.position}}</td>
+                <td>{{player.rating}}</td>
+                <td>{{player.G}}</td>
+                <td>{{player.PA}}</td>
+                <td>{{player.AB}}</td>
+                <td>{{player.H}}</td>
+                <td>{{player.HR}}</td>
+                <td>{{player.RBI}}</td>
+                <td>{{player.R}}</td>
+                <td>{{player.BB}}</td>
+                <td>{{player.IBB}}</td>
+                <td>{{player.HBP}}</td>
+                <td>{{player.SF}}</td>
+                <td>{{player.SO}}</td>
+                <td>{{player.GIDP}}</td>
+                <td>{{player.TB}}</td>
+                <td>{{player.SB}}</td>
+                <td>{{player.CS}}</td>
+                <td><a href="/delete/{{player.id}}/{{this_user.id}}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
 </body>
 </html>
