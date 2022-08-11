@@ -58,7 +58,7 @@
                 <td>{{this_player.SB}}</td>
                 <td>{{this_player.CS}}</td>
                 {% if this_player.id in watchlist_players %}
-                <td><button disabled>[+] Watchlist</a></button></td>
+                <td><button><a href="/delete/{{this_player.id}}/{{session['id']}}">[-] Watchlist</a></button></td>
                 {% else %}
                 <td><button><a href="/add_to_list/{{this_player.id}}/{{session['id']}}">[+] Watchlist</a></button></td>
                 {% endif %}

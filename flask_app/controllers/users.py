@@ -79,4 +79,4 @@ def delete(pid, uid):
         'uid': uid
     }
     user.User.delete_from_list(data)
-    return redirect(f'/user/{uid}')
+    return redirect(request.referrer)
