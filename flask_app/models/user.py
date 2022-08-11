@@ -84,3 +84,13 @@ class User:
     def delete_from_list(cls, data):
         query = 'DELETE FROM watchlists WHERE players_id = %(pid)s AND users_id = %(uid)s;'
         return connectToMySQL(db).query_db(query, data)
+
+    @classmethod
+    def check_watchlist(cls, data):
+        query = 'SELECT players_id FROM watchlists WHERE users_id = %(id)s;'
+        results = connectToMySQL(db).query_db(query, data)
+        new_list = []
+        for each_player in results:
+            new_list.append(each_player['players_id'])
+        print(new_list)
+        return new_list

@@ -35,29 +35,33 @@
             <th>CS</th>
             <th>Add to Watchlist</th>
         </tr>
-        {% for player in all_players %} 
+        {% for this_player in all_players %} 
             <tr>
-                <td>{{player.first_name}}</td>
-                <td>{{player.last_name}}</td>
-                <td>{{player.position}}</td>
-                <td>{{player.rating}}</td>
-                <td>{{player.G}}</td>
-                <td>{{player.PA}}</td>
-                <td>{{player.AB}}</td>
-                <td>{{player.H}}</td>
-                <td>{{player.HR}}</td>
-                <td>{{player.RBI}}</td>
-                <td>{{player.R}}</td>
-                <td>{{player.BB}}</td>
-                <td>{{player.IBB}}</td>
-                <td>{{player.HBP}}</td>
-                <td>{{player.SF}}</td>
-                <td>{{player.SO}}</td>
-                <td>{{player.GIDP}}</td>
-                <td>{{player.TB}}</td>
-                <td>{{player.SB}}</td>
-                <td>{{player.CS}}</td>
-                <td><a href="/add_to_list/{{player.id}}/{{session['id']}}">Watchlist {{player.last_name}}</a></td>
+                <td>{{this_player.first_name}}</td>
+                <td>{{this_player.last_name}}</td>
+                <td>{{this_player.position}}</td>
+                <td>{{this_player.rating}}</td>
+                <td>{{this_player.G}}</td>
+                <td>{{this_player.PA}}</td>
+                <td>{{this_player.AB}}</td>
+                <td>{{this_player.H}}</td>
+                <td>{{this_player.HR}}</td>
+                <td>{{this_player.RBI}}</td>
+                <td>{{this_player.R}}</td>
+                <td>{{this_player.BB}}</td>
+                <td>{{this_player.IBB}}</td>
+                <td>{{this_player.HBP}}</td>
+                <td>{{this_player.SF}}</td>
+                <td>{{this_player.SO}}</td>
+                <td>{{this_player.GIDP}}</td>
+                <td>{{this_player.TB}}</td>
+                <td>{{this_player.SB}}</td>
+                <td>{{this_player.CS}}</td>
+                {% if this_player.id in watchlist_players %}
+                <td><button disabled>[+] Watchlist</a></button></td>
+                {% else %}
+                <td><button><a href="/add_to_list/{{this_player.id}}/{{session['id']}}">[+] Watchlist</a></button></td>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>
