@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='stats.css') }}">
     <title>Document</title>
 </head>
 <body>
-    <h1>Stat Page</h1>
-    <button><a href="/">Home</a></button>
-    <button><a href="/user/{{session['id']}}">My Profile</a></button>
-    <button><a href="/logout">Logout</a></button>
+    <div class="header">
+        <div class="title">
+            <h1>Stat Page</h1>
+        </div>
+        <div class="navlinks">
+            <a class="button" href="/">Home</a>
+            <a class="button" href="/user/{{session['id']}}">My Profile</a>
+            <a class="button" href="/logout">Logout</a>
+        </div>
+    </div>
     <table class="sortable">
-        <tr>
+        <tr class="row">
             <th>First Name</th>
             <th>Last Name</th>
             <th>Position</th>
@@ -36,7 +43,7 @@
             <th>Add to Watchlist</th>
         </tr>
         {% for this_player in all_players %} 
-            <tr>
+            <tr class="row">
                 <td>{{this_player.first_name}}</td>
                 <td>{{this_player.last_name}}</td>
                 <td>{{this_player.position}}</td>
@@ -58,9 +65,9 @@
                 <td>{{this_player.SB}}</td>
                 <td>{{this_player.CS}}</td>
                 {% if this_player.id in watchlist_players %}
-                <td><button><a href="/delete/{{this_player.id}}/{{session['id']}}">[-] Watchlist</a></button></td>
+                <td><a class="button" href="/delete/{{this_player.id}}/{{session['id']}}">Un-Watchlist</a></td>
                 {% else %}
-                <td><button><a href="/add_to_list/{{this_player.id}}/{{session['id']}}">[+] Watchlist</a></button></td>
+                <td><a class="button" href="/add_to_list/{{this_player.id}}/{{session['id']}}">Watchlist</a></td>
                 {% endif %}
             </tr>
         {% endfor %}
