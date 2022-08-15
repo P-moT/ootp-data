@@ -1,0 +1,30 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.body {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    color: white;
+}
+div h1, p {
+    color: white;
+}
+body {
+    background-image: url('background.jpg');
+    background-size: cover;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+}
