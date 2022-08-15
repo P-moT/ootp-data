@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
     <title>{{this_user.username}}'s Profile</title>
+    <script src="{{ url_for('static', filename='sortable.js') }}"></script>
 </head>
 <body>
     <div class="header">
@@ -20,7 +21,7 @@
     </div>
     <div class="table">
         <h2>Your Watchlist</h2>
-        <table>
+        <table class="sortable">
             <tr class="row">
                 <th>First Name</th>
                 <th>Last Name</th>
