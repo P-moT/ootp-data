@@ -4,11 +4,11 @@ from flask_bcrypt import Bcrypt
 from flask_app.models import player, user
 bcrypt = Bcrypt(app)
 
-@app.route('/new_user', methods=['POST'])
+@app.route('/ootp/new_user', methods=['POST'])
 def add_user():
     if not request.form['password']:
         flash('Password field cannot be empty', 'register')
-        return redirect('/')
+        return redirect('/ootp')
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     data = {
         'first_name': request.form['first_name'],
@@ -27,17 +27,17 @@ def add_user():
     }
     
     if not user.User.validate_reg(form):
-        return redirect('/')
+        return redirect('/ootp')
     else:
         session['id'] = user.User.add_user(data)
-        return redirect('/')
+        return redirect('/ootp')
 
-@app.route('/logout')
+@app.route('/ootp/logout')
 def logout():
     session.clear()
-    return redirect('/')
+    return redirect('/ootp')
 
-@app.route('/login', methods=['POST'])
+@app.route('/ootp/login', methods=['POST'])
 def login():
     data = {
         'username': request.form['username']
@@ -45,14 +45,14 @@ def login():
     this_user = user.User.get_by_username(data)
     if not this_user:
         flash('Invalid Email or Password.', 'login')
-        return redirect('/')
+        return redirect('/ootp')
     if not bcrypt.check_password_hash(this_user.password, request.form['password']):
         flash('Invalid Email or Password.', 'login')
-        return redirect('/')
+        return redirect('/ootp')
     session['id'] = this_user.id
-    return redirect('/')
+    return redirect('/ootp')
 
-@app.route('/user/<int:id>')
+@app.route('/ootp/user/<int:id>')
 def profile(id):
     if 'id' in session:
         data = {
@@ -61,18 +61,18 @@ def profile(id):
         return render_template('profile.html', this_user = user.User.get_by_id(data), watchlist_players=user.User.get_user_watchlist(data))
     else:
         flash('You must be logged in to view that page.', 'login')
-        return redirect('/')
+        return redirect('/ootp')
 
-@app.route('/add_to_list/<int:pid>/<int:uid>')
+@app.route('/ootp/add_to_list/<int:pid>/<int:uid>')
 def add_to_list(pid, uid):
     data = {
         'pid': pid,
         'uid': uid
     }
     user.User.add_to_list(data)
-    return redirect('/stats')
+    return redirect('/ootp/stats')
 
-@app.route('/delete/<int:pid>/<int:uid>')
+@app.route('/ootp/delete/<int:pid>/<int:uid>')
 def delete(pid, uid):
     data = {
         'pid': pid,

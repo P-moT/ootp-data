@@ -5,7 +5,7 @@ from flask_app import app
 
 
 
-@app.route('/')
+@app.route('/ootp')
 def home():
     if 'id' in session:
         data = {
@@ -15,15 +15,15 @@ def home():
     else:
         return render_template('login.html')
 
-@app.route('/process', methods=['POST'])
+@app.route('/ootp/process', methods=['POST'])
 def process_file():
     file = request.files['stats']
     
     doc = BeautifulSoup(file, 'html.parser')
     player.Player.import_players(doc)
-    return redirect('/stats')
+    return redirect('/ootp/stats')
 
-@app.route('/stats')
+@app.route('/ootp/stats')
 def stat_page():
     if 'id' in session:
         data = {
@@ -32,4 +32,4 @@ def stat_page():
         return render_template('stats.html', all_players = player.Player.get_all_players(), watchlist_players=user.User.check_watchlist(data))
     else:
         flash('You must be logged in to view that page.', 'login')
-        return redirect('/')
+        return redirect('/ootp')

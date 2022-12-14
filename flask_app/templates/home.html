@@ -14,13 +14,13 @@
             <h1>File Uploader</h1>
         </div>
         <div class="navlinks">
-            <a class="button" href="/user/{{current_user.id}}">My Profile</a>
-            <a class="button" href="/stats">Stats</a>
-            <a class="button" href="/logout">Logout</a>
+            <a class="button" href="/ootp/user/{{current_user.id}}">My Profile</a>
+            <a class="button" href="/ootp/stats">Stats</a>
+            <a class="button" href="/ootp/logout">Logout</a>
         </div>
     </div>
     <div class="body">
-        <form action="/process" method="post" enctype='multipart/form-data'>
+        <form action="/ootp/process" method="post" enctype='multipart/form-data'>
             <label for="stats">Input your stat sheet:</label>
             <input type="file" name="stats" accept=".html">
             <input type="submit" value="Submit File" class="button">

@@ -15,9 +15,9 @@
             <h1>Stat Page</h1>
         </div>
         <div class="navlinks">
-            <a class="button" href="/">Home</a>
-            <a class="button" href="/user/{{session['id']}}">My Profile</a>
-            <a class="button" href="/logout">Logout</a>
+            <a class="button" href="/ootp">Home</a>
+            <a class="button" href="/ootp/user/{{session['id']}}">My Profile</a>
+            <a class="button" href="/ootp/logout">Logout</a>
         </div>
     </div>
     <table class="sortable">
@@ -67,9 +67,9 @@
                 <td>{{this_player.SB}}</td>
                 <td>{{this_player.CS}}</td>
                 {% if this_player.id in watchlist_players %}
-                <td><a class="button" href="/delete/{{this_player.id}}/{{session['id']}}">Un-Watchlist</a></td>
+                <td><a class="button" href="/ootp/delete/{{this_player.id}}/{{session['id']}}">Un-Watchlist</a></td>
                 {% else %}
-                <td><a class="button" href="/add_to_list/{{this_player.id}}/{{session['id']}}">Watchlist</a></td>
+                <td><a class="button" href="/ootp/add_to_list/{{this_player.id}}/{{session['id']}}">Watchlist</a></td>
                 {% endif %}
             </tr>
         {% endfor %}

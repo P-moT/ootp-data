@@ -15,9 +15,9 @@
             <h1>Welcome to {{this_user.username}}'s profile!</h1>
         </div>
         <div class="navlinks">
-            <a class="button" href="/">Home</a>
-            <a class="button" href="/stats">Stats</a>
-            <a class="button" href="/logout">Logout</a>
+            <a class="button" href="/ootp">Home</a>
+            <a class="button" href="/ootp/stats">Stats</a>
+            <a class="button" href="/ootp/logout">Logout</a>
         </div>
     </div>
     <div class="table">
@@ -68,7 +68,7 @@
                 <td>{{player.TB}}</td>
                 <td>{{player.SB}}</td>
                 <td>{{player.CS}}</td>
-                <td><a class="button" href="/delete/{{player.id}}/{{this_user.id}}">Delete</a></td>
+                <td><a class="button" href="/ootp/delete/{{player.id}}/{{this_user.id}}">Delete</a></td>
             </tr>
         {% endfor %}
         </table>
