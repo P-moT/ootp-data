@@ -5,7 +5,7 @@ from flask_app import app
 
 
 
-@app.route('/ootp')
+@app.route('/')
 def home():
     if 'id' in session:
         data = {
