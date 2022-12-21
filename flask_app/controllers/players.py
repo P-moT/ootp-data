@@ -32,4 +32,4 @@ def stat_page():
         return render_template('stats.html', all_players = player.Player.get_all_players(), watchlist_players=user.User.check_watchlist(data))
     else:
         flash('You must be logged in to view that page.', 'login')
-        return redirect('/ootp')
+        return redirect('/')

@@ -8,7 +8,7 @@ bcrypt = Bcrypt(app)
 def add_user():
     if not request.form['password']:
         flash('Password field cannot be empty', 'register')
-        return redirect('/ootp')
+        return redirect('/')
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     data = {
         'first_name': request.form['first_name'],
@@ -27,15 +27,15 @@ def add_user():
     }
     
     if not user.User.validate_reg(form):
-        return redirect('/ootp')
+        return redirect('/')
     else:
         session['id'] = user.User.add_user(data)
-        return redirect('/ootp')
+        return redirect('/')
 
 @app.route('/ootp/logout')
 def logout():
     session.clear()
-    return redirect('/ootp')
+    return redirect('/')
 
 @app.route('/ootp/login', methods=['POST'])
 def login():
@@ -45,12 +45,12 @@ def login():
     this_user = user.User.get_by_username(data)
     if not this_user:
         flash('Invalid Email or Password.', 'login')
-        return redirect('/ootp')
+        return redirect('/')
     if not bcrypt.check_password_hash(this_user.password, request.form['password']):
         flash('Invalid Email or Password.', 'login')
-        return redirect('/ootp')
+        return redirect('/')
     session['id'] = this_user.id
-    return redirect('/ootp')
+    return redirect('/')
 
 @app.route('/ootp/user/<int:id>')
 def profile(id):
@@ -61,7 +61,7 @@ def profile(id):
         return render_template('profile.html', this_user = user.User.get_by_id(data), watchlist_players=user.User.get_user_watchlist(data))
     else:
         flash('You must be logged in to view that page.', 'login')
-        return redirect('/ootp')
+        return redirect('/')
 
 @app.route('/ootp/add_to_list/<int:pid>/<int:uid>')
 def add_to_list(pid, uid):
